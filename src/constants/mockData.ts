@@ -5,7 +5,7 @@ export const MOCK_SUBJECTS: Subject[] = [
     id: 1,
     name: "Data Structures and Algorithms",
     code: "CS101",
-    department: "Computer Science ",
+    department: "Computer Science",
     description: "Fundamentals of data structures and algorithmic problem solving.",
     createdAt: "2024-03-08T12:00:00Z",
   },

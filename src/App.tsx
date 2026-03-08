@@ -12,7 +12,7 @@ import {Toaster} from "./components/refine-ui/notification/toaster";
 import {useNotificationProvider} from "./components/refine-ui/notification/use-notification-provider";
 import {ThemeProvider} from "./components/refine-ui/theme/theme-provider";
 import {Layout} from "./components/refine-ui/layout/layout";
-import {dataProvider} from "@/providers/data.ts";
+import {dataProvider} from "@/providers/data";
 import Dashboard from "@/pages/dashboard.tsx";
 import {BookOpen, Home} from "lucide-react";
 import SubjectList from "@/pages/subjects/list.tsx";
