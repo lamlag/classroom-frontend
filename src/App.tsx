@@ -8,15 +8,15 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import {BrowserRouter, Outlet, Route, Routes} from "react-router";
 import "./App.css";
-import {Toaster} from "./components/refine-ui/notification/toaster";
-import {useNotificationProvider} from "./components/refine-ui/notification/use-notification-provider";
-import {ThemeProvider} from "./components/refine-ui/theme/theme-provider";
-import {Layout} from "./components/refine-ui/layout/layout";
+import {Toaster} from "@/components/refine-ui/notification/toaster";
+import {useNotificationProvider} from "@/components/refine-ui/notification/use-notification-provider";
+import {ThemeProvider} from "@/components/refine-ui/theme/theme-provider";
+import {Layout} from "@/components/refine-ui/layout/layout";
 import {dataProvider} from "@/providers/data";
-import Dashboard from "@/pages/dashboard.tsx";
+import Dashboard from "@/pages/dashboard";
 import {BookOpen, Home} from "lucide-react";
-import SubjectList from "@/pages/subjects/list.tsx";
-import SubjectsCreate from "@/pages/subjects/create.tsx";
+import SubjectList from "@/pages/subjects/list";
+import SubjectsCreate from "@/pages/subjects/create";
 
 function App() {
   return (
