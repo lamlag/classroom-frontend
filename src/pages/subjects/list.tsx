@@ -10,24 +10,27 @@ import {useTable} from "@refinedev/react-table";
 import {Subject} from "@/types";
 import {ColumnDef} from "@tanstack/react-table";
 import {Badge} from "@/components/ui/badge.tsx";
-import {DataTable} from "@/components/refine-ui/data-table/data-table.tsx";
+import {DataTable} from "@/components/refine-ui/data-table/data-table";
 import {ShowButton} from "@/components/refine-ui/buttons/show.tsx";
 
-const SubjectListPage = () => {
+const SubjectList = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
-  const [selectedDepartment, setSelectedDepartment] = useState<string>("all");
+  const [selectedDepartment, setSelectedDepartment] = useState("all");
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearchQuery(searchQuery);
-    }, 500);
+  const departmentFilters = selectedDepartment === "all" ? [] : [
+    {
+      field: "department",
+      operator: "eq" as const,
+      value: selectedDepartment,
+    },
+  ];
 
-    return () => clearTimeout(timer);
-  }, [searchQuery]);
+  const searchFilters = searchQuery ? [
+      {field: "name", operator: "contains" as const, value: searchQuery},
+    ]
+    : [];
 
-  const subjectColumns = useMemo<ColumnDef<Subject>[]>(
-    () => [
+  const subjectColumns = useMemo<ColumnDef<Subject>[]>(() => [
       {
         id: "code",
         accessorKey: "code",
@@ -40,55 +43,30 @@ const SubjectListPage = () => {
         accessorKey: "name",
         size: 200,
         header: () => <p className="column-title">Name</p>,
-        cell: ({getValue}) => (
-          <span className="text-foreground">{getValue<string>()}</span>
-        ),
+        cell: ({getValue}) =>
+          <span className="text-foreground">{getValue<string>()}</span>,
         filterFn: "includesString",
       },
       {
         id: "department",
-        accessorKey: "department",
+        accessorKey: "department.name",
         size: 150,
         header: () => <p className="column-title">Department</p>,
-        cell: ({getValue}) => (
-          <Badge variant="secondary">{getValue<string>()}</Badge>
-        ),
+        cell: ({getValue}) =>
+          <Badge variant="secondary">{getValue<string>()}</Badge>,
       },
       {
         id: "description",
         accessorKey: "description",
         size: 300,
         header: () => <p className="column-title">Description</p>,
-        cell: ({getValue}) => (
-          <span className="truncate line-clamp-2">{getValue<string>()}</span>
-        ),
+        cell: ({getValue}) =>
+          <span className="truncate line-clamp-2">{getValue<string>()}</span>,
       },
 
     ],
     [],
   );
-
-  const departmentFilters =
-    selectedDepartment === "all"
-      ? []
-      : [
-        {
-          field: "department",
-          operator: "eq" as const,
-          value: selectedDepartment,
-        },
-      ];
-
-  const searchFilters = debouncedSearchQuery
-    ? [
-      {
-        field: "name",
-        operator: "contains" as const,
-        value: debouncedSearchQuery,
-      },
-    ]
-    : [];
-
   const subjectTable = useTable<Subject>({
     columns: subjectColumns,
     refineCoreProps: {
@@ -104,14 +82,14 @@ const SubjectListPage = () => {
       sorters: {
         initial: [
           {
-            field: "id",
-            order: "desc",
+            field: 'id',
+            order: 'desc',
           },
         ],
       },
     },
   });
-
+  
   return (
     <ListView>
       <Breadcrumb/>
@@ -157,4 +135,4 @@ const SubjectListPage = () => {
 
   );
 };
-export default SubjectListPage;
+export default SubjectList;
