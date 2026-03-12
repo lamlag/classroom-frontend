@@ -47,7 +47,7 @@ const SubjectListPage = () => {
       },
       {
         id: "department",
-        accessorKey: "department.name",
+        accessorKey: "department",
         size: 150,
         header: () => <p className="column-title">Department</p>,
         cell: ({getValue}) => (
@@ -63,7 +63,7 @@ const SubjectListPage = () => {
           <span className="truncate line-clamp-2">{getValue<string>()}</span>
         ),
       },
-      
+
     ],
     [],
   );
