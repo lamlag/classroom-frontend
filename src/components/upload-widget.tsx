@@ -29,7 +29,7 @@ const UploadWidget = ({value = null, onChange, disabled = false}) => {
         uploadPreset: CLOUDINARY_UPLOAD_PRESET,
         multiple: false,
         folder: 'uploads',
-        maxFileSzie: 5000000,
+        maxFileSize: 5000000,
         clientAllowedFormats: ['png', 'jpg', 'jpeg'],
       }, (error, result) => {
         if (!error && result.event === 'success') {
@@ -67,7 +67,7 @@ const UploadWidget = ({value = null, onChange, disabled = false}) => {
         </div>) :
         <div className="upload-dropzone" role="button" tabIndex={0}
              onClick={openWidget} onKeyDown={(event) => {
-          if (event.key === "Enter") {
+          if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
             openWidget();
           }
