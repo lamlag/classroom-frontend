@@ -38,7 +38,7 @@ export const bannerPhoto = (imageCldPubId: string, name: string) => {
         ).position(
           new Position()
             .gravity(compass("south_west"))
-            .offsetY(0.2)
+            .offsetY(0.20)
             .offsetX(0.02),
         ),
       )
