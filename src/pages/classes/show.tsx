@@ -9,6 +9,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {AdvancedImage} from "@cloudinary/react";
 import {bannerPhoto} from "@/lib/cloudinary";
 
+
 const Show = () => {
   const {query} = useShow<ClassDetails>({resource: "classes"});
   const classDetails = query?.data?.data;
@@ -59,7 +60,7 @@ const Show = () => {
           </div>
           <div>
             <Badge variant="outline">{capacity} spots</Badge>
-            <Badge variant={status == "active" ? "default" : "secondary"}
+            <Badge variant={status === "active" ? "default" : "secondary"}
                    data-status={status}>{status.toUpperCase()}</Badge>
           </div>
         </div>
