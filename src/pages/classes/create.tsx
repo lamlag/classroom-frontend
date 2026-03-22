@@ -8,7 +8,6 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "@refinedev/react-hook-form";
 import {classSchema} from "@/lib/schema.ts";
 import * as z from "zod";
-import {labelDay} from "react-day-picker/src/contexts/DayPicker/labels";
 
 import {
   Form,
